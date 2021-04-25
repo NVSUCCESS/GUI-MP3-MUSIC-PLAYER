@@ -1,0 +1,23 @@
+target=it.pievis.test.WaveTest
+#Series of input to explore, necessary for jpf-awt
+awt.script=${config_path}/FramesTest.es
+
+report.console.property_violation=error,snapshot
+
+# Deadlock Analyzer is a deadlock-specific trace report generator
+# Shared Checker is a property-specific (jpf-aprop extension's annotation) checker
+# Overlapping Method Analyzer reports which method is called concurrently by different threads (if any)
+# Coverage Analyzer gives statistics about method invocation
+# UIActionGenerator should check the states of the UI related to user input
+listener+=,.listener.DeadlockAnalyzer
+#listener+=,gov.nasa.jpf.aprop.listener.SharedChecker
+#listener+=,.listener.OverlappingMethodAnalyzer
+#listener+=,.listener.CoverageAnalyzer
+#listener=.listener.ChoiceTracker
+#choice.class=gov.nasa.jpf.awt.UIActionGenerator
+
+deadlock.format=essential
+#coverage.exclude_handlers=true
+
+classpath=bin
+sourcepath=src
